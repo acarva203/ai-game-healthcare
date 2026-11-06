@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "content_version": "northbank-lore-1",
+  "day": {
+    "number": 1,
+    "initial_funds": 180,
+    "test_capacity": 2,
+    "favorable_health": 60,
+    "favorable_settlement": 40
+  },
+  "cases": [
+    {
+      "id": "case_01",
+      "title": "Morgan Vale — the routine queue",
+      "patient_name": "Morgan Vale",
+      "arrived_tick": 0,
+      "deadline_tick": 2,
+      "starting_health": 65,
+      "late_damage_per_tick": 5,
+      "visible_evidence": [
+        {
+          "id": "intake",
+          "text": "Morgan describes familiar muscle soreness after a normal work shift. The intake assessment records no change from the earlier reassuring review."
+        },
+        {
+          "id": "history",
+          "text": "Lena Ortiz, charge nurse: Morgan reports no new concern. The current observations agree with the routine review summary."
+        }
+      ],
+      "hidden_category": "category_a",
+      "care_options": [
+        {
+          "id": "care_a",
+          "label": "Pathway A — routine care review",
+          "cost": 35,
+          "duration": 1,
+          "effects": {
+            "category_a": 25,
+            "category_b": -30
+          }
+        },
+        {
+          "id": "care_b",
+          "label": "Pathway B — escalated clinical review",
+          "cost": 60,
+          "duration": 1,
+          "effects": {
+            "category_a": -20,
+            "category_b": 25
+          }
+        }
+      ],
+      "tests": [
+        {
+          "id": "verify_marker",
+          "label": "Repeat the secondary assessment",
+          "cost": 15,
+          "duration": 1,
+          "result": {
+            "id": "marker_result",
+            "text": "The secondary assessment adds no contradictory observation. The routine review remains supported in this authored case."
+          }
+        }
+      ],
+      "ai_recommendation": {
+        "id": "rec_01",
+        "care_option_id": "care_a",
+        "confidence": 0.9,
+        "rationale": "LANTERN: The current observations agree with the earlier routine assessment. Pathway A is supported by the available record.",
+        "evidence_ids": [
+          "intake",
+          "history"
+        ]
+      },
+      "author_notes": "New fictional control case retained from the prototype; general intake inspiration: S01. Accurate recommendation. The extra assessment is low-information. Health effects and timing are abstract game balance, not clinical predictions. Seed: morgan_vale."
+    },
+    {
+      "id": "case_02",
+      "title": "Timothy Martin — the stress explanation",
+      "patient_name": "Timothy Martin",
+      "arrived_tick": 0,
+      "deadline_tick": 3,
+      "starting_health": 60,
+      "late_damage_per_tick": 8,
+      "visible_evidence": [
+        {
+          "id": "intake",
+          "text": "Timothy, 53, reports persistent headaches, fatigue, soreness, and nausea. He attributes them to pressure at work. No prior condition is recorded."
+        },
+        {
+          "id": "staff_note",
+          "text": "Lena Ortiz, charge nurse: Timothy says the headaches are worsening and increasingly interrupting ordinary tasks. That change is not addressed by the earlier stress explanation."
+        }
+      ],
+      "hidden_category": "category_b",
+      "care_options": [
+        {
+          "id": "care_a",
+          "label": "Pathway A — routine care review",
+          "cost": 35,
+          "duration": 1,
+          "effects": {
+            "category_a": 25,
+            "category_b": -30
+          }
+        },
+        {
+          "id": "care_b",
+          "label": "Pathway B — escalated clinical review",
+          "cost": 60,
+          "duration": 1,
+          "effects": {
+            "category_a": -20,
+            "category_b": 25
+          }
+        }
+      ],
+      "tests": [
+        {
+          "id": "verify_marker",
+          "label": "Complete a secondary assessment",
+          "cost": 20,
+          "duration": 2,
+          "result": {
+            "id": "marker_result",
+            "text": "The second clinician documents the worsening course and a new concerning assessment finding. The routine summary no longer fits this authored case; further clinical review is supported. No definitive diagnosis has been established."
+          }
+        }
+      ],
+      "ai_recommendation": {
+        "id": "rec_02",
+        "care_option_id": "care_a",
+        "confidence": 0.86,
+        "rationale": "LANTERN: The reported work stress and earlier routine summary favor pathway A. This recommendation gives less weight to the newly reported change in function.",
+        "evidence_ids": [
+          "intake",
+          "staff_note"
+        ]
+      },
+      "author_notes": "Adapted from S02 Timothy Martin paragraphs 48–60; S03 Drexler/Filosa briefs inform review caveats. Worsening-function note and secondary-assessment wording are authored additions. The prototype models reassessment versus routine handling, not tumor diagnosis or treatment. No appellate procedure is converted into a malpractice finding. Seed: timothy_martin."
+    }
+  ],
+  "policies": [
+    {
+      "id": "verification_policy",
+      "title": "Northbank P01 — secondary-assessment gate",
+      "memo": "From Elias Chen, compliance. During this pilot, complete the secondary assessment for the relevant patient before committing to pathway B. Each missed assessment creates one internal finding and a 45-credit budget penalty. This rule activates when acknowledged. There is no exception route in this introductory scenario. This is a fictional administrative rule, not a statutory or clinical requirement.",
+      "effective_after_acknowledgement": true,
+      "scope": [
+        {
+          "case_id": "case_01",
+          "care_option_id": "care_b"
+        },
+        {
+          "case_id": "case_02",
+          "care_option_id": "care_b"
+        }
+      ],
+      "requirement": {
+        "kind": "test_completed_before_care",
+        "test_by_case": {
+          "case_01": "verify_marker",
+          "case_02": "verify_marker"
+        }
+      },
+      "fine_per_finding": 45
+    }
+  ],
+  "graph": {
+    "start": "briefing",
+    "state_fields": {
+      "policy_findings": "int",
+      "favorable_outcomes": "int",
+      "funds": "int"
+    },
+    "nodes": [
+      {
+        "id": "briefing",
+        "kind": "choice",
+        "text": "Northbank Community Hospital, pilot shift 1. Dr. Mara Voss: LANTERN can shorten the queue, but you still sign the decision. Read and acknowledge the secondary-assessment memo before starting.",
+        "choices": [
+          "acknowledge"
+        ]
+      },
+      {
+        "id": "ward",
+        "kind": "event",
+        "text": "Lena Ortiz: Morgan and Timothy are waiting. Read the current notes as well as the summaries. Close the day when you are ready for the internal review.",
+        "events": [
+          "day_closed"
+        ]
+      },
+      {
+        "id": "audit",
+        "kind": "auto",
+        "text": "Elias Chen: First reconcile the record with the pilot rule. Review patient outcomes separately; an internal finding is not a malpractice judgment."
+      },
+      {
+        "id": "care_review",
+        "kind": "auto",
+        "text": "Dr. Mara Voss: Now account for the care delivered and the budget remaining for the service."
+      },
+      {
+        "id": "oversight_hearing",
+        "kind": "terminal",
+        "text": "Elias Chen requests a board review of the documented P01 finding or findings. The review will consider what was available at commitment. It does not establish legal liability for the clinician, hospital, or vendor."
+      },
+      {
+        "id": "care_at_cost",
+        "kind": "terminal",
+        "text": "Both patients reached favorable simulated outcomes. Mara requests a funding review because little budget remains. The team must explain how the service can sustain that care."
+      },
+      {
+        "id": "measured_integration",
+        "kind": "terminal",
+        "text": "Both patients reached favorable simulated outcomes and the internal audit found no P01 breaches. Lena asks the team to preserve what they learned from the changing record before the next shift."
+      },
+      {
+        "id": "human_cost",
+        "kind": "terminal",
+        "text": "No P01 breach was recorded, but fewer than two patients reached a favorable simulated outcome. Sam Reed asks the team to prepare an honest account of the care decisions and their consequences."
+      }
+    ],
+    "edges": [
+      {
+        "from": "briefing",
+        "to": "ward",
+        "choice": "acknowledge"
+      },
+      {
+        "from": "ward",
+        "to": "audit",
+        "event": "day_closed"
+      },
+      {
+        "from": "audit",
+        "to": "oversight_hearing",
+        "priority": 30,
+        "when": {
+          "field": "policy_findings",
+          "op": "gte",
+          "value": 1
+        }
+      },
+      {
+        "from": "audit",
+        "to": "care_review",
+        "priority": 20,
+        "when": {
+          "field": "favorable_outcomes",
+          "op": "gte",
+          "value": 2
+        }
+      },
+      {
+        "from": "audit",
+        "to": "human_cost",
+        "priority": 0,
+        "fallback": true
+      },
+      {
+        "from": "care_review",
+        "to": "care_at_cost",
+        "priority": 10,
+        "when": {
+          "field": "funds",
+          "op": "lte",
+          "value": 70
+        }
+      },
+      {
+        "from": "care_review",
+        "to": "measured_integration",
+        "priority": 0,
+        "fallback": true
+      }
+    ]
+  }
+}

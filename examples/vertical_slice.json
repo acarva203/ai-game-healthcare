@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "content_version": "starter-1",
+  "day": {
+    "number": 1,
+    "initial_funds": 180,
+    "test_capacity": 2,
+    "favorable_health": 60,
+    "favorable_settlement": 40
+  },
+  "cases": [
+    {
+      "id": "case_01",
+      "title": "An apparently straightforward recommendation",
+      "patient_name": "Morgan Vale",
+      "arrived_tick": 0,
+      "deadline_tick": 2,
+      "starting_health": 65,
+      "late_damage_per_tick": 5,
+      "visible_evidence": [
+        {"id": "intake", "text": "The fictional screening marker matches category A."},
+        {"id": "history", "text": "The chart contains no conflicting marker or prior response."}
+      ],
+      "hidden_category": "category_a",
+      "care_options": [
+        {"id": "care_a", "label": "Care pathway A", "cost": 35, "duration": 1, "effects": {"category_a": 25, "category_b": -30}},
+        {"id": "care_b", "label": "Care pathway B", "cost": 60, "duration": 1, "effects": {"category_a": -20, "category_b": 25}}
+      ],
+      "tests": [
+        {"id": "verify_marker", "label": "Repeat screening marker", "cost": 15, "duration": 1, "result": {"id": "marker_result", "text": "The repeat marker supports category A; the initial screen was consistent."}}
+      ],
+      "ai_recommendation": {"id": "rec_01", "care_option_id": "care_a", "confidence": 0.9, "rationale": "The available marker supports pathway A and no conflicting evidence is documented.", "evidence_ids": ["intake", "history"]},
+      "author_notes": "An accurate recommendation. The optional repeat test offers little new information and competes with the second patient's deadline. This is a fictional classification system, not clinical guidance."
+    },
+    {
+      "id": "case_02",
+      "title": "A familiar pattern with conflicting evidence",
+      "patient_name": "Riley Chen",
+      "arrived_tick": 0,
+      "deadline_tick": 3,
+      "starting_health": 60,
+      "late_damage_per_tick": 8,
+      "visible_evidence": [
+        {"id": "intake", "text": "The initial fictional screening marker resembles category A."},
+        {"id": "staff_note", "text": "A repeat bedside observation conflicts with the screen and instead suggests category B."}
+      ],
+      "hidden_category": "category_b",
+      "care_options": [
+        {"id": "care_a", "label": "Care pathway A", "cost": 35, "duration": 1, "effects": {"category_a": 25, "category_b": -30}},
+        {"id": "care_b", "label": "Care pathway B", "cost": 60, "duration": 1, "effects": {"category_a": -20, "category_b": 25}}
+      ],
+      "tests": [
+        {"id": "verify_marker", "label": "Verify conflicting marker", "cost": 20, "duration": 2, "result": {"id": "marker_result", "text": "Verification supports category B. The bedside observation was consistent; the initial screen was misleading."}}
+      ],
+      "ai_recommendation": {"id": "rec_02", "care_option_id": "care_a", "confidence": 0.86, "rationale": "The initial screening marker resembles category A. The bedside observation is treated as less reliable in this recommendation.", "evidence_ids": ["intake", "staff_note"]},
+      "author_notes": "An intentional AI error with a visible contradiction. The model's confidence is not proof. Pathway B helps this fictional case, but its verification policy creates a timing tradeoff."
+    }
+  ],
+  "policies": [
+    {
+      "id": "verification_policy",
+      "title": "Verification before pathway B",
+      "memo": "Before committing to pathway B for either case today, complete that patient's verification test. A missed verification creates one audit finding and a 45-credit fine. This rule becomes active when acknowledged. There is no exception route in this introductory scenario.",
+      "effective_after_acknowledgement": true,
+      "scope": [{"case_id": "case_01", "care_option_id": "care_b"}, {"case_id": "case_02", "care_option_id": "care_b"}],
+      "requirement": {"kind": "test_completed_before_care", "test_by_case": {"case_01": "verify_marker", "case_02": "verify_marker"}},
+      "fine_per_finding": 45
+    }
+  ],
+  "graph": {
+    "start": "briefing",
+    "state_fields": {"policy_findings": "int", "favorable_outcomes": "int", "funds": "int"},
+    "nodes": [
+      {"id": "briefing", "kind": "choice", "text": "Read the verification memo before starting your shift.", "choices": ["acknowledge"]},
+      {"id": "ward", "kind": "event", "text": "Review the two cases. Close the day when you are ready for the audit.", "events": ["day_closed"]},
+      {"id": "audit", "kind": "auto", "text": "The audit considers rule compliance separately from patient health."},
+      {"id": "care_review", "kind": "auto", "text": "Review the financial cost of today's patient outcomes."},
+      {"id": "oversight_hearing", "kind": "terminal", "text": "The board requests a review of the recorded policy findings. The patient outcomes are discussed separately."},
+      {"id": "care_at_cost", "kind": "terminal", "text": "Both patients reached favorable outcomes, but the remaining budget triggers a funding review."},
+      {"id": "measured_integration", "kind": "terminal", "text": "Both patients reached favorable outcomes and the audit found no verification breaches. Review the evidence and delays before the next shift."},
+      {"id": "human_cost", "kind": "terminal", "text": "The audit found no verification breaches, but fewer than two patients reached a favorable outcome. The team reviews what happened."}
+    ],
+    "edges": [
+      {"from": "briefing", "to": "ward", "choice": "acknowledge"},
+      {"from": "ward", "to": "audit", "event": "day_closed"},
+      {"from": "audit", "to": "oversight_hearing", "priority": 30, "when": {"field": "policy_findings", "op": "gte", "value": 1}},
+      {"from": "audit", "to": "care_review", "priority": 20, "when": {"field": "favorable_outcomes", "op": "gte", "value": 2}},
+      {"from": "audit", "to": "human_cost", "priority": 0, "fallback": true},
+      {"from": "care_review", "to": "care_at_cost", "priority": 10, "when": {"field": "funds", "op": "lte", "value": 70}},
+      {"from": "care_review", "to": "measured_integration", "priority": 0, "fallback": true}
+    ]
+  }
+}

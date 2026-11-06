@@ -1,0 +1,207 @@
+{
+  "archive": "/Users/asirur2024/Downloads/[LORE] Research and Legal Lore-20261106T202415Z-1-001.zip",
+  "archive_sha256": "1616f19052ca2e63f76be4d74e5904cc32ea1f0fade138c6d612b2b7ea7837f9",
+  "files": [
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Master Research Doc.docx",
+      "sha256": "e8b91045e618752921bb089e5833547c67c7f5a54986ee174e68c1d5ee2bcb0c",
+      "bytes": 715804,
+      "embedded_images": 2,
+      "text_chars": 26290,
+      "id": "S01",
+      "inspection": "text read; thematic sections used"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Real Life Cases for Patients.docx",
+      "sha256": "8211b93e00b672e4f31449e1085fe2c83bf6d22dd6b7bdfc26ba7508c7b72ad1",
+      "bytes": 581939,
+      "embedded_images": 0,
+      "text_chars": 33263,
+      "id": "S02",
+      "inspection": "text read; patient trees used; mock opinions excluded as authority"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Patient Legal Briefs.docx",
+      "sha256": "77a716dcef14d395c87c56cd4b4d4d06492dcec48f41c894d1fbf6c9af1f5453",
+      "bytes": 12877,
+      "embedded_images": 0,
+      "text_chars": 12935,
+      "id": "S03",
+      "inspection": "text read; procedural qualifications retained"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Legal Background.docx",
+      "sha256": "fd2db33675b61eb4c24655f4eb99a888028d6c55bb651790b226c84b6e6aa470",
+      "bytes": 10684,
+      "embedded_images": 0,
+      "text_chars": 6857,
+      "id": "S04",
+      "inspection": "text read; thematic adaptation only"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Legal Liability.docx",
+      "sha256": "43dc9e612df71f15c76a2c0db7e39c39ce1c7e127f317fcdeb664052df967f64",
+      "bytes": 9051,
+      "embedded_images": 0,
+      "text_chars": 2909,
+      "id": "S05",
+      "inspection": "text read; questions retained as questions"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Existing Game Research.docx",
+      "sha256": "6ec97b083834ac4358d74ea840ab02570427be59ad614c710d689fdce353a05b",
+      "bytes": 7741266,
+      "embedded_images": 4,
+      "text_chars": 3854,
+      "id": "S06",
+      "inspection": "text read; embedded images not reviewed"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Malpractice Articles.docx",
+      "sha256": "6fbf02536ae11cbbb2c785a13bfb4bd49cb7b78f22d3b919cf43d5453aa7877b",
+      "bytes": 8279,
+      "embedded_images": 0,
+      "text_chars": 2090,
+      "id": "S07",
+      "inspection": "text read; secondary research leads"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Article by Yarborough.pdf",
+      "sha256": "f8c38569422d3a70375e6b7544a527a2f0a8bada4b1feaa633d4663ea02f2f52",
+      "bytes": 82999,
+      "pages": 6,
+      "text_chars": 38663,
+      "id": "S08",
+      "inspection": "abstract and opening section read"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Article Locating Liability.pdf",
+      "sha256": "b17997c93823afc4b7f57b45d0e807712b423bd933d5132959041a4e14190ee3",
+      "bytes": 456865,
+      "pages": 31,
+      "text_chars": 96378,
+      "id": "S09",
+      "inspection": "opening thesis read; relevant sections searched"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Article on Regulations.pdf",
+      "sha256": "8965e2346adffc27ad6bfc186209ba1fb361a0ba7cc955fcf93e6adb44a7cf10",
+      "bytes": 1282824,
+      "pages": 27,
+      "text_chars": 78503,
+      "id": "S10",
+      "inspection": "opening pages read; oversight passages searched"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Ethical Frameworks.pdf",
+      "sha256": "63c6321707cb838d826384ceae7da1a2850b73f1f491a595d046116f0c84fbe1",
+      "bytes": 952866,
+      "pages": 18,
+      "text_chars": 91936,
+      "id": "S11",
+      "inspection": "abstract read; framework passages searched"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Disease Data.xlsx",
+      "sha256": "1b89da96bd3a3c08b73fc0d407e69e9f4f467da624a01ebefebd0e3f21dbf506",
+      "bytes": 42835,
+      "sheets": [
+        {
+          "state": "visible",
+          "name": "Sheet1",
+          "sheetId": "1",
+          "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id": "rId5"
+        }
+      ],
+      "text_chars": 27798,
+      "id": "S12",
+      "inspection": "sheet values extracted; schema and populated/partial rows inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Medical Maladies Note 01.png",
+      "sha256": "ad4b1093501e9678a9d396852235e9740b554ecc5d703114aeb6f34582c8b3e2",
+      "bytes": 412346,
+      "id": "S13",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Medical Maladies Note 02.png",
+      "sha256": "70a6c483fda154294182ce9c77c8f9aba09eb5d599081dd61e8bc48c44006b32",
+      "bytes": 340551,
+      "id": "S14",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Medical Maladies Note 03.png",
+      "sha256": "54b978fc7ae026d6b14cb518c2945f8accdc5f43a839d7bceed646674a4ac52a",
+      "bytes": 450999,
+      "id": "S15",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Medical Maladies Note 04.jpg",
+      "sha256": "ee9cb6d14620f6ee8b6de5ebc676fc6f1b2c755a6d5526476104a98b7b894589",
+      "bytes": 570911,
+      "id": "S16",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Misc. Med_Law Note 01.png",
+      "sha256": "0508910e4f195f3067c4fe18ba00721239b215fa8f3eb397b7b56e27e6c157e0",
+      "bytes": 444412,
+      "id": "S17",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Misc. Med_Law Note 02.png",
+      "sha256": "c2d5e26373ffca72f4d24ca18dda373df76518233939aac16b6cac4324dd9ab5",
+      "bytes": 527678,
+      "id": "S18",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Early Research Topics.png",
+      "sha256": "295137740969b9f9a8f9f95b0d39ba6b69b9462992f5c1fe5353f7370fd8f81c",
+      "bytes": 55129,
+      "id": "S19",
+      "inspection": "visually inspected; historical task list only"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Possible Research 01.png",
+      "sha256": "a3532ae482671c478a4e7f232329afbfc0561b6a5da1c82aafd54cd10bc0e610",
+      "bytes": 168517,
+      "id": "S20",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Possible Research 02.png",
+      "sha256": "19b1d9972e413b456f5aaea250e15000779879eae6ffaef21a7f48adaa0d96c4",
+      "bytes": 126719,
+      "id": "S21",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Possible Research 03.png",
+      "sha256": "54dba5dff5cceb115cde1515248f2150af7243c54a7030d500026c9b358c1318",
+      "bytes": 70696,
+      "id": "S22",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Possible Research 04.png",
+      "sha256": "76c6691ae94b424c92b139b43a99deddc924b105e93b05dbfd2fcddc9a404a71",
+      "bytes": 139378,
+      "id": "S23",
+      "inspection": "visually inspected"
+    },
+    {
+      "member": "[LORE] Research and Legal Lore/[LORE] Possible Research 05.png",
+      "sha256": "e22189216cf00775f8ce7269c5fcd85bc040a394e862cd4fe67137ba09fdccb0",
+      "bytes": 96877,
+      "id": "S24",
+      "inspection": "visually inspected"
+    }
+  ],
+  "imported_on": "2026-11-06",
+  "purpose": "Provenance of authoring seeds; no source is designated independently verified medical or legal authority."
+}
